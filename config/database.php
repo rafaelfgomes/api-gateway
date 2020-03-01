@@ -35,7 +35,7 @@ return [
 
         'sqlite' => [
             'driver' => 'sqlite',
-            'database' => database_path('db.sqlite'),
+            'database' => database_path('oauth2.sqlite'),
             'prefix' => env('DB_PREFIX', ''),
         ]
 
