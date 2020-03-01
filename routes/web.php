@@ -22,12 +22,16 @@ $router->group([ 'prefix' => $apiPrefix ], function () use ($router, $apiVersion
 
     $router->group([ 'prefix' => $apiVersion ], function () use ($router)  {
 
-        $router->get('profiles[/{id}]', 'ProfilesController@show');
-        $router->group([ 'prefix' => 'profiles' ], function ($router) {
-            $router->post('/', 'ProfilesController@store');
-            $router->put('/{id}', 'ProfilesController@update');
-            $router->delete('/{id}', 'ProfilesController@delete');
-            $router->post('/activate/{id}', 'ProfilesController@activate');
+        $router->group([ 'middleware' => 'client.credentials' ], function () use ($router){
+
+            $router->get('profiles[/{id}]', 'ProfilesController@show');
+            $router->group([ 'prefix' => 'profiles' ], function ($router) {
+                $router->post('/', 'ProfilesController@store');
+                $router->put('/{id}', 'ProfilesController@update');
+                $router->delete('/{id}', 'ProfilesController@delete');
+                $router->post('/activate/{id}', 'ProfilesController@activate');
+            });
+
         });
 
     });
