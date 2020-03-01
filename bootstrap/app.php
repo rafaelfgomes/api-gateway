@@ -29,6 +29,7 @@ $app->withEloquent();
  * Resgistering the config services file
  */
 $app->configure('services');
+$app->configure('auth');
 
 /*
 |--------------------------------------------------------------------------
