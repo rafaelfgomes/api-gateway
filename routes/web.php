@@ -18,9 +18,9 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group([ 'prefix' => $apiPrefix ], function ($router, $apiVersion) {
+$router->group([ 'prefix' => $apiPrefix ], function () use ($router, $apiVersion) {
 
-    $router->group([ 'prefix' => $apiVersion ], function ($router) {
+    $router->group([ 'prefix' => $apiVersion ], function () use ($router)  {
 
         $router->get('profiles[/{id}]', 'ProfilesController@show');
         $router->group([ 'prefix' => 'profiles' ], function ($router) {

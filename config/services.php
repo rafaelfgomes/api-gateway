@@ -9,6 +9,8 @@ return [
     |
     */
 
-
+    'profiles' => [
+        'base_uri' => env('PROFILES_BASE_URL')
+    ]
 
 ];
