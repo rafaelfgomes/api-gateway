@@ -11,6 +11,27 @@
 |
 */
 
+$apiPrefix = strval(env('API_PREFIX'));
+$apiVersion = strval(env('API_VERSION'));
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group([ 'prefix' => $apiPrefix ], function ($router, $apiVersion) {
+
+    $router->group([ 'prefix' => $apiVersion ], function ($router) {
+
+        $router->get('profiles[/{id}]', 'ProfilesController@show');
+        $router->group([ 'prefix' => 'profiles' ], function ($router) {
+            $router->post('/', 'ProfilesController@store');
+            $router->put('/{id}', 'ProfilesController@update');
+            $router->delete('/{id}', 'ProfilesController@delete');
+            $router->post('/activate/{id}', 'ProfilesController@activate');
+        });
+
+    });
+
+});
+
+
