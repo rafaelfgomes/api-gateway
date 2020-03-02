@@ -10,10 +10,12 @@ class ProfilesService
     use ConsumesExternalServices;
 
     private $baseUri;
+    private $secret;
 
     public function __construct()
     {
         $this->baseUri = config('services.profiles.base_uri');
+        $this->secret = config('services.profiles.secret');
     }
 
     public function getProfiles($id = null)

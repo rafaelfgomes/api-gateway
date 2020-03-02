@@ -10,7 +10,8 @@ return [
     */
 
     'profiles' => [
-        'base_uri' => env('PROFILES_BASE_URL')
+        'base_uri' => env('PROFILES_BASE_URL'),
+        'secret' => env('PROFILES_SECRET')
     ]
 
 ];
